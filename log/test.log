@@ -1,0 +1,1378 @@
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255) NOT NULL, "price" decimal(10,2) NOT NULL, "merchant_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "merchants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "address" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "quantity" integer NOT NULL, "purchaser_id" integer NOT NULL, "item_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_order_items_on_item_id" ON "order_items" ("item_id")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_order_items_on_purchaser_id" ON "order_items" ("purchaser_id")[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "purchasers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140622123346')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140622122901')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140622123008')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140622123025')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateOrders (20140622123845)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "purchaser_id" integer NOT NULL, "merchant_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_orders_on_purchaser_id" ON "orders" ("purchaser_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orders_on_purchaser_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orders_on_purchaser_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_orders_on_merchant_id" ON "orders" ("merchant_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140622123845"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_order_items_on_purchaser_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_order_items_on_purchaser_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orders_on_purchaser_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orders_on_purchaser_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "purchasers"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchasers"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchasers"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchasers"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchasers"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchasers"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchasers"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchasers"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (170.7ms)[0m  [1mCREATE TABLE "items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255) NOT NULL, "price" decimal(10,2) NOT NULL, "merchant_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (709.9ms)[0m  CREATE TABLE "merchants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "address" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (87.7ms)[0m  [1mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "quantity" integer NOT NULL, "purchaser_id" integer NOT NULL, "item_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (2.1ms)[0m  [1mCREATE  INDEX "index_order_items_on_item_id" ON "order_items" ("item_id")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+
+  [1m[36m (2.3ms)[0m  [1mCREATE  INDEX "index_order_items_on_purchaser_id" ON "order_items" ("purchaser_id")[0m
+  [1m[35m (2.9ms)[0m  CREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "purchaser_id" integer NOT NULL, "merchant_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (2.7ms)[0m  [1mCREATE  INDEX "index_orders_on_merchant_id" ON "orders" ("merchant_id")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+
+  [1m[36m (1.9ms)[0m  [1mCREATE  INDEX "index_orders_on_purchaser_id" ON "orders" ("purchaser_id")[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "purchasers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (2.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140622123845')
+  [1m[36m (2.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140622122901')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140622123008')
+  [1m[36m (2.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140622123025')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1173.4ms)[0m  DROP TABLE "items"
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255) NOT NULL, "price" decimal(10,2) NOT NULL, "merchant_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  DROP TABLE "merchants"
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "merchants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "address" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.5ms)[0m  DROP TABLE "order_items"
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "quantity" integer NOT NULL, "purchaser_id" integer NOT NULL, "item_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX "index_order_items_on_item_id" ON "order_items" ("item_id")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_order_items_on_purchaser_id" ON "order_items" ("purchaser_id")[0m
+  [1m[35m (1.3ms)[0m  DROP TABLE "orders"
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "purchaser_id" integer NOT NULL, "merchant_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX "index_orders_on_merchant_id" ON "orders" ("merchant_id")
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+[0m
+  [1m[35m (1.2ms)[0m  CREATE  INDEX "index_orders_on_purchaser_id" ON "orders" ("purchaser_id")
+  [1m[36m (1.2ms)[0m  [1mDROP TABLE "purchasers"[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "purchasers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1187.5ms)[0m  DROP TABLE "items"
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255) NOT NULL, "price" decimal(10,2) NOT NULL, "merchant_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  DROP TABLE "merchants"
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "merchants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "address" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (3.8ms)[0m  DROP TABLE "order_items"
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "quantity" integer NOT NULL, "purchaser_id" integer NOT NULL, "item_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.8ms)[0m  [1mCREATE  INDEX "index_order_items_on_item_id" ON "order_items" ("item_id")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+
+  [1m[36m (1.7ms)[0m  [1mCREATE  INDEX "index_order_items_on_purchaser_id" ON "order_items" ("purchaser_id")[0m
+  [1m[35m (1.5ms)[0m  DROP TABLE "orders"
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "purchaser_id" integer NOT NULL, "merchant_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (2.3ms)[0m  CREATE  INDEX "index_orders_on_merchant_id" ON "orders" ("merchant_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+[0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX "index_orders_on_purchaser_id" ON "orders" ("purchaser_id")
+  [1m[36m (2.4ms)[0m  [1mDROP TABLE "purchasers"[0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "purchasers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1111.5ms)[0m  DROP TABLE "items"
+  [1m[36m (4.7ms)[0m  [1mCREATE TABLE "items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255) NOT NULL, "price" decimal(10,2) NOT NULL, "merchant_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.3ms)[0m  DROP TABLE "merchants"
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "merchants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "address" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.8ms)[0m  DROP TABLE "order_items"
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "quantity" integer NOT NULL, "purchaser_id" integer NOT NULL, "item_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.7ms)[0m  [1mCREATE  INDEX "index_order_items_on_item_id" ON "order_items" ("item_id")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_order_items_on_purchaser_id" ON "order_items" ("purchaser_id")[0m
+  [1m[35m (1.6ms)[0m  DROP TABLE "orders"
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "purchaser_id" integer NOT NULL, "merchant_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX "index_orders_on_merchant_id" ON "orders" ("merchant_id")
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+[0m
+  [1m[35m (1.5ms)[0m  CREATE  INDEX "index_orders_on_purchaser_id" ON "orders" ("purchaser_id")
+  [1m[36m (1.9ms)[0m  [1mDROP TABLE "purchasers"[0m
+  [1m[35m (1.7ms)[0m  CREATE TABLE "purchasers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePurchases (20140622125234)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePurchases (20140622125234)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "purchases" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "item_id" integer NOT NULL, "quantity" integer NOT NULL, "purchaser_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_purchases_on_item_id" ON "purchases" ("item_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_purchases_on_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_purchases_on_item_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_purchases_on_purchaser_id" ON "purchases" ("purchaser_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140622125234"]]
+  [1m[36m (1184.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_order_items_on_purchaser_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_order_items_on_purchaser_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_order_items_on_item_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orders_on_purchaser_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orders_on_purchaser_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orders_on_merchant_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_purchases_on_purchaser_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_purchases_on_purchaser_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_purchases_on_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_purchases_on_item_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:55:27.206426"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:55:27.206426"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:55:27.233174"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:55:27.233174"]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (1.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:55:28.103049"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:55:28.103049"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:55:28.113331"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:55:28.113331"]]
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (822.8ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:55:51.383092"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:55:51.383092"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:55:51.403826"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:55:51.403826"]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (1019.5ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:56:10.182733"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:56:10.182733"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:56:10.195036"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:56:10.195036"]]
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (1008.3ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:56:12.266766"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:56:12.266766"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:56:12.280496"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:56:12.280496"]]
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (766.7ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:56:24.972834"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:56:24.972834"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:56:24.997898"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:56:24.997898"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."name" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+SQLite3::SQLException: no such column: items.name: SELECT  "items".* FROM "items"  WHERE "items"."name" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (980.6ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:56:26.888214"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:56:26.888214"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:56:26.900162"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:56:26.900162"]]
+  [1m[35mItem Load (0.3ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."name" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+SQLite3::SQLException: no such column: items.name: SELECT  "items".* FROM "items"  WHERE "items"."name" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (929.4ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:56:43.921397"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:56:43.921397"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:56:43.936374"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:56:43.936374"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:56:45.104636"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:56:45.104636"]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.9ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:56:46.992239"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:56:46.992239"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:56:47.002080"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:56:47.002080"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:56:47.018902"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:56:47.018902"]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (83.7ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:05.358029"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:57:05.358029"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:57:05.378901"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:57:05.378901"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:05.415261"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:57:05.415261"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:05.427328"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 12:57:05.427328"]]
+  [1m[36mPurchaser Load (0.2ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 12:57:05.430368"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 12:57:05.430368"]]
+  [1m[36mMerchant Load (0.2ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 12:57:05.432936"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 12:57:05.432936"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:05.435889"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 12:57:05.435889"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:05.437788"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 12:57:05.437788"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:05.440484"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 12:57:05.440484"]]
+  [1m[35mMerchant Load (0.2ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 12:57:05.443162"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 12:57:05.443162"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:05.446372"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 12:57:05.446372"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:05.448415"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 12:57:05.448415"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:05.453151"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 12:57:05.453151"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:06.445310"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:57:06.445310"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:57:06.461391"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:57:06.461391"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:06.481015"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:57:06.481015"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:06.489914"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 12:57:06.489914"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 12:57:06.492780"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 12:57:06.492780"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 12:57:06.495051"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 12:57:06.495051"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:06.497691"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 12:57:06.497691"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:06.499527"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 12:57:06.499527"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:06.501815"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 12:57:06.501815"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 12:57:06.504075"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 12:57:06.504075"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:06.506683"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 12:57:06.506683"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:06.508123"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 12:57:06.508123"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:06.510733"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 12:57:06.510733"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (921.4ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:09.944864"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:57:09.944864"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:57:09.959835"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:57:09.959835"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:09.980658"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:57:09.980658"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:09.990593"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 12:57:09.990593"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 12:57:09.993897"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 12:57:09.993897"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 12:57:09.996651"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 12:57:09.996651"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:09.999624"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 12:57:09.999624"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:10.001646"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 12:57:10.001646"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:10.003683"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 12:57:10.003683"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 12:57:10.005478"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 12:57:10.005478"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:10.007364"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 12:57:10.007364"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:10.008522"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 12:57:10.008522"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:10.011140"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 12:57:10.011140"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:18.467916"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:57:18.467916"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:57:18.484954"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:57:18.484954"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:18.506426"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:57:18.506426"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:18.515576"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 12:57:18.515576"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 12:57:18.518658"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 12:57:18.518658"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 12:57:18.521052"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 12:57:18.521052"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:18.523831"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 12:57:18.523831"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:18.525769"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 12:57:18.525769"]]
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:18.528156"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 12:57:18.528156"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 12:57:18.530424"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 12:57:18.530424"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:18.533154"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 12:57:18.533154"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:18.535068"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 12:57:18.535068"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:18.539068"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 12:57:18.539068"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:19.424156"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:57:19.424156"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:57:19.439528"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:57:19.439528"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:19.453583"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:57:19.453583"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:19.460536"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 12:57:19.460536"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 12:57:19.463251"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 12:57:19.463251"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 12:57:19.465589"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 12:57:19.465589"]]
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:19.468481"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 12:57:19.468481"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:19.470343"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 12:57:19.470343"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:19.472818"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 12:57:19.472818"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 12:57:19.475483"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 12:57:19.475483"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:19.477991"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 12:57:19.477991"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:19.479734"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 12:57:19.479734"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:19.483451"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 12:57:19.483451"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (760.0ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:21.486994"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:57:21.486994"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:57:21.499441"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:57:21.499441"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:21.515843"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:57:21.515843"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:21.526382"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 12:57:21.526382"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 12:57:21.529495"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 12:57:21.529495"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 12:57:21.531907"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 12:57:21.531907"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:21.533966"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 12:57:21.533966"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:21.535239"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 12:57:21.535239"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:21.536827"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 12:57:21.536827"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 12:57:21.538342"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 12:57:21.538342"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:57:21.540100"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 12:57:21.540100"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:21.541413"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 12:57:21.541413"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:57:21.544232"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 12:57:21.544232"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (1055.4ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:01.567389"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:59:01.567389"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:59:01.582877"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:59:01.582877"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:01.604302"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:59:01.604302"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:01.623992"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 12:59:01.623992"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 12:59:01.627323"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 12:59:01.627323"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 12:59:01.629884"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 12:59:01.629884"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:01.632825"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 12:59:01.632825"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:01.634901"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 12:59:01.634901"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:01.637283"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 12:59:01.637283"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 12:59:01.638936"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 12:59:01.638936"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:01.640725"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 12:59:01.640725"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:01.641967"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 12:59:01.641967"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:01.646318"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 12:59:01.646318"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (868.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:03.384523"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:59:03.384523"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:59:03.413639"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:59:03.413639"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:03.430006"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:59:03.430006"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:03.440688"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 12:59:03.440688"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 12:59:03.444150"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 12:59:03.444150"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 12:59:03.446893"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 12:59:03.446893"]]
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:03.450442"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 12:59:03.450442"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:03.452349"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 12:59:03.452349"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:03.454977"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 12:59:03.454977"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 12:59:03.457469"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 12:59:03.457469"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:03.460225"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 12:59:03.460225"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:03.462458"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 12:59:03.462458"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:03.467096"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 12:59:03.467096"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (893.0ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:23.634821"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 12:59:23.634821"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 12:59:23.647550"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 12:59:23.647550"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:23.668799"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 12:59:23.668799"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:23.678186"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 12:59:23.678186"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 12:59:23.680386"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 12:59:23.680386"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 12:59:23.681988"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 12:59:23.681988"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:23.684350"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 12:59:23.684350"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:23.686282"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 12:59:23.686282"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:23.687818"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 12:59:23.687818"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 12:59:23.689281"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 12:59:23.689281"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 12:59:23.691240"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 12:59:23.691240"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:23.693006"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 12:59:23.693006"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 12:59:23.696440"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 12:59:23.696440"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (1404.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:03:28.759544"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:03:28.759544"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:03:28.774709"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:03:28.774709"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:03:28.795049"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:03:28.795049"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:03:28.803835"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:03:28.803835"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:03:28.806088"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:03:28.806088"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:03:28.807701"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:03:28.807701"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:03:28.809931"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:03:28.809931"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:03:28.811832"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:03:28.811832"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:03:28.814286"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:03:28.814286"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:03:28.816786"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:03:28.816786"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:03:28.819425"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:03:28.819425"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:03:28.821750"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:03:28.821750"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:03:28.825961"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:03:28.825961"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1164.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:03:31.073008"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:03:31.073008"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:03:31.083309"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:03:31.083309"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:03:31.097481"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:03:31.097481"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:03:31.104283"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:03:31.104283"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:03:31.106411"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:03:31.106411"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:03:31.107943"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:03:31.107943"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:03:31.109832"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:03:31.109832"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:03:31.111511"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:03:31.111511"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:03:31.113909"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:03:31.113909"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:03:31.115842"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:03:31.115842"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:03:31.117709"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:03:31.117709"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:03:31.119154"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:03:31.119154"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:03:31.123103"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:03:31.123103"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1334.6ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:16.041527"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:04:16.041527"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:04:16.063945"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:04:16.063945"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:16.081501"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:04:16.081501"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:16.091812"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:04:16.091812"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:04:16.094529"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:04:16.094529"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:04:16.096168"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:04:16.096168"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:16.097968"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:04:16.097968"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:16.099158"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:04:16.099158"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:16.100882"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:04:16.100882"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:04:16.102694"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:04:16.102694"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:16.105346"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:04:16.105346"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:16.107185"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:04:16.107185"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:16.111452"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:04:16.111452"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (695.7ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:48.391018"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:04:48.391018"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:04:48.409277"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:04:48.409277"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:48.431953"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:04:48.431953"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:48.440708"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:04:48.440708"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:04:48.443656"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:04:48.443656"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:04:48.445797"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:04:48.445797"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:48.448153"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:04:48.448153"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:48.449868"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:04:48.449868"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:48.452148"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:04:48.452148"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:04:48.454392"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:04:48.454392"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:48.456469"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:04:48.456469"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:48.457727"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:04:48.457727"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:48.460332"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:04:48.460332"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (802.5ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:57.485484"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:04:57.485484"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:04:57.496903"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:04:57.496903"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:57.516094"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:04:57.516094"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:57.529541"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:04:57.529541"]]
+  [1m[36mPurchaser Load (0.2ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:04:57.532873"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:04:57.532873"]]
+  [1m[36mMerchant Load (0.2ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:04:57.536673"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:04:57.536673"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:57.540127"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:04:57.540127"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:57.542282"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:04:57.542282"]]
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:57.544961"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:04:57.544961"]]
+  [1m[35mMerchant Load (0.2ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:04:57.548324"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:04:57.548324"]]
+  [1m[35mItem Load (0.3ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:57.552736"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:04:57.552736"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:57.555036"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:04:57.555036"]]
+  [1m[36mPurchaser Load (0.2ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:57.561428"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:04:57.561428"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (1131.8ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:59.673659"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:04:59.673659"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:04:59.690946"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:04:59.690946"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:59.712328"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:04:59.712328"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:59.719538"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:04:59.719538"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:04:59.721789"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:04:59.721789"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:04:59.723454"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:04:59.723454"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:59.725471"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:04:59.725471"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:59.726738"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:04:59.726738"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:59.728754"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:04:59.728754"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:04:59.730370"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:04:59.730370"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:04:59.732286"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:04:59.732286"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:59.733559"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:04:59.733559"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:04:59.736773"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:04:59.736773"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:05:28.131555"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:05:28.131555"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:05:28.147948"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:05:28.147948"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:05:28.167965"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:05:28.167965"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:05:28.177692"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:05:28.177692"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:05:28.180837"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:05:28.180837"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:05:28.183285"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:05:28.183285"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:05:28.185947"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:05:28.185947"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:05:28.187761"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:05:28.187761"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:05:28.189818"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:05:28.189818"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:05:28.191843"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:05:28.191843"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:05:28.194250"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:05:28.194250"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:05:28.196065"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:05:28.196065"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:05:28.199863"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:05:28.199863"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (1074.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:05:30.121715"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:05:30.121715"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:05:30.132916"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:05:30.132916"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:05:30.148447"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:05:30.148447"]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:05:30.156002"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:05:30.156002"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:05:30.159003"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:05:30.159003"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:05:30.161356"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:05:30.161356"]]
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:05:30.164304"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:05:30.164304"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:05:30.166198"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:05:30.166198"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:05:30.168077"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:05:30.168077"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:05:30.170304"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:05:30.170304"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:05:30.172964"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:05:30.172964"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:05:30.174928"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:05:30.174928"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:05:30.179221"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:05:30.179221"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (1071.5ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:06:51.874930"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:06:51.874930"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:06:51.886599"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:06:51.886599"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:06:51.904491"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:06:51.904491"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:06:51.915497"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:06:51.915497"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:06:51.918108"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:06:51.918108"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:06:51.919967"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:06:51.919967"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:06:51.921738"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:06:51.921738"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:06:51.922988"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:06:51.922988"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:06:51.925773"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:06:51.925773"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:06:51.927342"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:06:51.927342"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:06:51.929325"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:06:51.929325"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:06:51.930560"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:06:51.930560"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:06:51.933158"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:06:51.933158"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (1292.5ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:38:13.951737"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:38:13.951737"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:38:13.966040"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:38:13.966040"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:38:14.067206"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:38:14.067206"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:38:14.075553"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:38:14.075553"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:38:14.077659"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:38:14.077659"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:38:14.079240"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:38:14.079240"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:38:14.080967"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:38:14.080967"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:38:14.082635"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:38:14.082635"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:38:14.085107"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:38:14.085107"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:38:14.087548"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:38:14.087548"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:38:14.090209"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:38:14.090209"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:38:14.092053"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:38:14.092053"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:38:14.096349"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:38:14.096349"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:38:19.778768"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:38:19.778768"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:38:19.783237"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:38:19.783237"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:38:19.788922"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:38:19.788922"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:38:19.794385"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:38:19.794385"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:38:19.797898"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:38:19.797898"]]
+  [1m[36mMerchant Load (0.2ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:38:19.800857"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:38:19.800857"]]
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:38:19.804396"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:38:19.804396"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:38:19.805966"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:38:19.805966"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:38:19.807896"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:38:19.807896"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:38:19.810465"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:38:19.810465"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:38:19.813589"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:38:19.813589"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:38:19.815669"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:38:19.815669"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:38:19.818949"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:38:19.818949"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:39:59.128935"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:39:59.128935"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:39:59.133731"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:39:59.133731"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:39:59.142787"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:39:59.142787"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:39:59.150179"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:39:59.150179"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:39:59.152603"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:39:59.152603"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:39:59.155395"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:39:59.155395"]]
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:39:59.158090"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:39:59.158090"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:39:59.159812"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:39:59.159812"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:39:59.161932"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:39:59.161932"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:39:59.164002"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:39:59.164002"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:39:59.166696"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:39:59.166696"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:39:59.168025"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:39:59.168025"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:39:59.170783"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:39:59.170783"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (988.9ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:45:01.844154"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:45:01.844154"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:45:01.849300"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:45:01.849300"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:45:01.865844"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:45:01.865844"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:45:01.874056"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:45:01.874056"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:45:01.877581"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:45:01.877581"]]
+  [1m[36mMerchant Load (0.1ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:45:01.880114"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:45:01.880114"]]
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:45:01.883721"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:45:01.883721"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:45:01.886100"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:45:01.886100"]]
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:45:01.888777"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:45:01.888777"]]
+  [1m[35mMerchant Load (0.2ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:45:01.891770"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:45:01.891770"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:45:01.893912"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:45:01.893912"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:45:01.895605"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:45:01.895605"]]
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.2ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:45:01.902905"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:45:01.902905"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:46:52.058862"], ["name", "Snake Plissken"], ["updated_at", "2014-06-22 13:46:52.058862"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Bob''s Pizza' AND "merchants"."address" = '987 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "987 Fake St"], ["created_at", "2014-06-22 13:46:52.063376"], ["name", "Bob's Pizza"], ["updated_at", "2014-06-22 13:46:52.063376"]]
+  [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$10 off $20 of food' AND "items"."price" = 10.0 AND "items"."merchant_id" = 1 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:46:52.069608"], ["description", "$10 off $20 of food"], ["merchant_id", 1], ["price", 10.0], ["updated_at", "2014-06-22 13:46:52.069608"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:46:52.075764"], ["item_id", 1], ["purchaser_id", 1], ["quantity", 2], ["updated_at", "2014-06-22 13:46:52.075764"]]
+  [1m[36mPurchaser Load (0.2ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-06-22 13:46:52.079034"], ["name", "Amy Pond"], ["updated_at", "2014-06-22 13:46:52.079034"]]
+  [1m[36mMerchant Load (0.2ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Tom''s Awesome Shop' AND "merchants"."address" = '456 Unreal Rd' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["address", "456 Unreal Rd"], ["created_at", "2014-06-22 13:46:52.082273"], ["name", "Tom's Awesome Shop"], ["updated_at", "2014-06-22 13:46:52.082273"]]
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$30 of awesome for $10' AND "items"."price" = 10.0 AND "items"."merchant_id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:46:52.086261"], ["description", "$30 of awesome for $10"], ["merchant_id", 2], ["price", 10.0], ["updated_at", "2014-06-22 13:46:52.086261"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:46:52.088767"], ["item_id", 2], ["purchaser_id", 2], ["quantity", 5], ["updated_at", "2014-06-22 13:46:52.088767"]]
+  [1m[35mPurchaser Load (0.1ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-06-22 13:46:52.091566"], ["name", "Marty McFly"], ["updated_at", "2014-06-22 13:46:52.091566"]]
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "merchants" ("address", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "123 Fake St"], ["created_at", "2014-06-22 13:46:52.094150"], ["name", "Sneaker Store Emporium"], ["updated_at", "2014-06-22 13:46:52.094150"]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "items" ("created_at", "description", "merchant_id", "price", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-06-22 13:46:52.097440"], ["description", "$20 Sneakers for $5"], ["merchant_id", 3], ["price", 5.0], ["updated_at", "2014-06-22 13:46:52.097440"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:46:52.099871"], ["item_id", 3], ["purchaser_id", 3], ["quantity", 1], ["updated_at", "2014-06-22 13:46:52.099871"]]
+  [1m[36mPurchaser Load (0.2ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."name" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (0.1ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."name" = 'Sneaker Store Emporium' AND "merchants"."address" = '123 Fake St' LIMIT 1
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT  "items".* FROM "items"  WHERE "items"."description" = '$20 Sneakers for $5' AND "items"."price" = 5.0 AND "items"."merchant_id" = 3 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "purchases" ("created_at", "item_id", "purchaser_id", "quantity", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-06-22 13:46:52.104717"], ["item_id", 3], ["purchaser_id", 1], ["quantity", 4], ["updated_at", "2014-06-22 13:46:52.104717"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "purchasers"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "items"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "merchants"
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "purchases"[0m
+  [1m[35m (677.8ms)[0m  rollback transaction
