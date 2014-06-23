@@ -14,6 +14,7 @@
       <ul class="import-data">
         <li><%= ImportSession.human_attribute_name(:created_at) %>: <%= l(@import_session.created_at) %></li>
         <li><%= ImportSession.human_attribute_name(:importer) %>: <%= @import_session.importer_email %></li>
+        <li><%= ImportSession.human_attribute_name(:data_file) %>: <%= link_to("Download", @import_session.data_file.url) %></li>
       </ul>
     </div>
 
