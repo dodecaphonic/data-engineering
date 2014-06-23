@@ -26,6 +26,7 @@ gem "spring",        group: :development
 # gem "bcrypt", "~> 3.1.7"
 
 gem "puma"
+gem "paperclip", "~> 4.1"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.0"
@@ -37,4 +38,6 @@ end
 group :test do
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false
+  gem "capybara"
+  gem "poltergeist", require: false
 end
