@@ -70,9 +70,10 @@ RSpec.configure do |config|
   end
 end
 
-def create_import_session
+def create_import_session(importer)
   bogus_data_file = StringIO.new("nothingtoseehere")
-  import_session  = ImportSession.create!(data_file: bogus_data_file)
+  import_session  = ImportSession.create!(data_file: bogus_data_file,
+                                          importer: importer)
 
   merchant  = Merchant.create!(name: "Foo Store", address: "1 Bar St.")
   purchaser = Purchaser.create!(name: "Buysalot Moneypenny")
@@ -84,5 +85,20 @@ def create_import_session
     purchase = Purchase.create!(item: item, quantity: 1, purchaser: purchaser)
     ImportedPurchase.create!(import_session: import_session,
                              purchase: purchase, line_number: line)
+  end
+end
+
+def create_admin
+  Admin.create!(email: "admin@paganza.com", password: "password",
+                password_confirmation: "password")
+end
+
+
+def login_with(email, password)
+  within("#new_admin") do
+    fill_in "admin_email", with: email
+    fill_in "admin_password", with: password
+
+    click_button "Sign in"
   end
 end

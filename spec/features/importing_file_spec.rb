@@ -3,9 +3,11 @@ require "rails_helper"
 feature "Importing a file", js: true do
   given(:valid_data_file) { File.expand_path("../resources/example_input.tab", __dir__) }
   given(:invalid_data_file) { File.expand_path("../resources/botched_input.tab", __dir__) }
+  given(:admin) { create_admin }
 
   before do
     visit root_path
+    login_with admin.email, "password"
   end
 
   scenario "shows the total gross amount of purchases and each line item" do
