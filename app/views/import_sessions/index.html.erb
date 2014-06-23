@@ -1,0 +1,32 @@
+<%= form_for @import_session do |f| %>
+  <%= f.file_field :data_file %>
+  <%= f.submit t("import_sessions.import_action") %>
+<% end %>
+
+<h2><%= t("import_sessions.previously_imported_files") %></h2>
+
+<% if @import_sessions.any? %>
+  <table>
+    <tr>
+      <th>
+        <%= ImportSession.human_attribute_name(:created_at) %>
+      </th>
+      <th>
+        <%= ImportSession.human_attribute_name(:total_imported_purchases) %>
+      </th>
+      <th>
+        <%= ImportSession.human_attribute_name(:total_gross_revenue) %>
+      </th>
+    </tr>
+
+    <% @import_sessions.each do |import_session| %>
+      <tr class="import-session">
+        <td><%= import_session.created_at %></td>
+        <td><%= import_session.total_imported_purchases %></td>
+        <td><%= import_session.total_gross_revenue %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p><%= t("import_sessions.none_exist") %></p>
+<% end %>

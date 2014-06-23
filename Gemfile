@@ -40,4 +40,5 @@ group :test do
   gem "simplecov", require: false
   gem "capybara"
   gem "poltergeist", require: false
+  gem "database_cleaner"
 end

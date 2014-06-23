@@ -1,5 +1,7 @@
 require "csv"
 
+class TransactionImporterError < StandardError; end
+
 class TransactionImporter
   def initialize(data_file)
     @data_file = data_file
@@ -22,6 +24,8 @@ class TransactionImporter
       import_session.save!
       import_session
     end
+  rescue
+    raise TransactionImporterError
   end
 
   def load_transaction(transaction)

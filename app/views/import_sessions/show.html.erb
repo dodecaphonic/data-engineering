@@ -1,0 +1,39 @@
+<div class="gross-revenue">
+  <p>Total Gross Revenue:</p>
+  <%= number_to_currency(@import_session.total_gross_revenue) %>
+</div>
+
+
+<table>
+  <tr>
+    <th>Purchaser Name</th>
+    <th>Item Description</th>
+    <th>Item Price</th>
+    <th>Purchase Count</th>
+    <th>Merchant Address</th>
+    <th>Merchant Name</th>
+  </tr>
+
+  <% @import_session.purchases.each do |purchase| %>
+    <tr class="purchase">
+      <td>
+        <%= purchase.purchaser.name %>
+      </td>
+      <td>
+        <%= purchase.item_description %>
+      </td>
+      <td>
+        <%= number_to_currency(purchase.item_price) %>
+      </td>
+      <td>
+        <%= purchase.quantity %>
+      </td>
+      <td>
+        <%= purchase.merchant_address %>
+      </td>
+      <td>
+        <%= purchase.merchant_name %>
+      </td>
+    </tr>
+  <% end %>
+</table>

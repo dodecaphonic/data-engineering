@@ -27,7 +27,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -44,4 +44,45 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  config.before(:suite) do
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    Capybara.reset_sessions!
+    DatabaseCleaner.clean
+  end
+
+  config.after(:each) do
+    FileUtils.rm_rf "#{Rails.root}/public/uploads"
+  end
+end
+
+def create_import_session
+  bogus_data_file = StringIO.new("nothingtoseehere")
+  import_session  = ImportSession.create!(data_file: bogus_data_file)
+
+  merchant  = Merchant.create!(name: "Foo Store", address: "1 Bar St.")
+  purchaser = Purchaser.create!(name: "Buysalot Moneypenny")
+  items     = [10, 22, 5].map.with_index { |v, i|
+    Item.create!(description: "China Import #{i}", price: v, merchant: merchant)
+  }
+
+  items.each.with_index do |item, line|
+    purchase = Purchase.create!(item: item, quantity: 1, purchaser: purchaser)
+    ImportedPurchase.create!(import_session: import_session,
+                             purchase: purchase, line_number: line)
+  end
 end
