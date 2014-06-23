@@ -3,22 +3,23 @@ require "csv"
 class TransactionImporterError < StandardError; end
 
 class TransactionImporter
-  def initialize(data_file)
+  def initialize(data_file, importer)
     @data_file = data_file
+    @importer  = importer
   end
 
-  attr_reader :data_file
-  private     :data_file
+  attr_reader :data_file, :importer
+  private     :data_file, :importer
 
   def import
     Purchase.transaction do
-      import_session = ImportSession.new
+      import_session = ImportSession.new(importer: importer)
       data           = CSV.open(data_file, col_sep: "\t", headers: true)
 
-      data.each.with_index { |row, line|
+      data.each.with_index do |row, line|
         purchase = load_transaction(Transaction.new(row))
         import_session.imported_purchases.build(line_number: line, purchase: purchase)
-      }
+      end
 
       import_session.data_file = open(data_file)
       import_session.save!

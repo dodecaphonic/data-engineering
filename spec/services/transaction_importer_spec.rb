@@ -1,7 +1,9 @@
 require "rails_helper"
 
 RSpec.describe TransactionImporter, type: :service do
-  subject { TransactionImporter.new(data_file) }
+  let(:admin) { create_admin }
+  
+  subject { TransactionImporter.new(data_file, admin) }
 
   describe "with a valid data file" do
     let(:data_file) { File.expand_path("../resources/example_input.tab", __dir__) }
