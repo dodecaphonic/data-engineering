@@ -3,12 +3,25 @@
 <head>
   <title>Paganza</title>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application" %>
 </head>
 <body>
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, class: name %>
-  <% end %>
+  <div class="header">
+    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+      <%= link_to "Paganza", root_url, class: "pure-menu-heading" %>
 
-  <%= yield %>
+      <ul>
+        <li class="pure-menu-selected"><%= link_to "Import File", root_url %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name %>
+    <% end %>
+
+    <%= yield %>
+  </div>
 </body>
 </html>

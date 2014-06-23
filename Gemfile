@@ -27,6 +27,7 @@ gem "spring",        group: :development
 
 gem "puma"
 gem "paperclip", "~> 4.1"
+gem "purecss"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.0"

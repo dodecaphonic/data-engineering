@@ -1,5 +1,7 @@
 en:
-  hello: "Hello world"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
 
   activerecord:
     models:
@@ -11,6 +13,7 @@ en:
         total_gross_revenue: "Total gross revenue"
   import_sessions:
     previously_imported: "Previously imported files"
+    import_new: "Import new file"
     import_action: "Import"
     success: "All data have been imported successfully."
     failure: "There was a problem importing the data file."

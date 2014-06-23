@@ -1,32 +1,44 @@
-<%= form_for @import_session do |f| %>
-  <%= f.file_field :data_file %>
-  <%= f.submit t("import_sessions.import_action") %>
-<% end %>
+<div class="content">
+  <h2 class="content-head"><%= t("import_sessions.import_new") %></h2>
 
-<h2><%= t("import_sessions.previously_imported_files") %></h2>
+  <%= form_for @import_session, html: { class: "pure-form" } do |f| %>
+    <%= f.file_field :data_file %>
+    <%= f.submit t("import_sessions.import_action"), class: "pure-button pure-button-primary" %>
+  <% end %>          
+</div>
+
+<div class="content">
+  <h2 class="content-head"><%= t("import_sessions.previously_imported_files") %></h2>
 
 <% if @import_sessions.any? %>
-  <table>
-    <tr>
-      <th>
-        <%= ImportSession.human_attribute_name(:created_at) %>
-      </th>
-      <th>
-        <%= ImportSession.human_attribute_name(:total_imported_purchases) %>
-      </th>
-      <th>
-        <%= ImportSession.human_attribute_name(:total_gross_revenue) %>
-      </th>
-    </tr>
-
-    <% @import_sessions.each do |import_session| %>
-      <tr class="import-session">
-        <td><%= import_session.created_at %></td>
-        <td><%= import_session.total_imported_purchases %></td>
-        <td><%= import_session.total_gross_revenue %></td>
+  <table class="pure-table">
+    <thead>
+      <tr>
+        <th>
+          <%= ImportSession.human_attribute_name(:created_at) %>
+        </th>
+        <th>
+          <%= ImportSession.human_attribute_name(:total_imported_purchases) %>
+        </th>
+        <th>
+          <%= ImportSession.human_attribute_name(:total_gross_revenue) %>
+        </th>
+        <th></th>
       </tr>
-    <% end %>
+    </thead>
+
+    <tbody>
+      <% @import_sessions.each do |import_session| %>
+        <tr class="import-session">
+          <td><%= l(import_session.created_at, format: :short) %></td>
+          <td><%= import_session.total_imported_purchases %></td>
+          <td><%= number_to_currency(import_session.total_gross_revenue) %></td>
+          <td><%= link_to "Details", import_session_path(import_session) %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 <% else %>
   <p><%= t("import_sessions.none_exist") %></p>
 <% end %>
+</div>

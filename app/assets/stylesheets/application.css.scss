@@ -10,6 +10,55 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require purecss
  *= require_tree .
  *= require_self
  */
+
+body {
+    font-size: 1.0em;
+}
+
+.content-wrapper {
+    margin-top: 50px;
+}
+
+.content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.content-head {
+    font-weight: 300;
+}
+
+.pure-table {
+    thead th {
+        font-weight: 500;
+    }
+}
+
+.info-box {
+    .gross-revenue-box {
+        text-align: center;
+        font-weight: 200;
+        height: 200px;
+
+        h2 {
+            font-weight: 100;
+        }
+
+        .gross-revenue-value {
+            font-size: 6em;
+        }
+    }
+
+    .import-data {
+        list-style-type: none;
+    }
+}
+
+.pure-table {
+    font-size: 0.9em;
+}
+
