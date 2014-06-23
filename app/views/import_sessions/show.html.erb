@@ -1,0 +1,60 @@
+<div class="content">
+  <h1 class="content-head">
+    <%= ImportSession.model_name.human %>
+  </h1>
+
+  <div class="pure-g">
+    <div class="info-box pure-u-1-3">
+      <div class="gross-revenue-box">
+        <h2>Total Gross Revenue</h2>
+        <span class="gross-revenue-value">
+          <%= number_to_currency(@import_session.total_gross_revenue) %>
+        </span>
+      </div>
+      <ul class="import-data">
+        <li><%= ImportSession.human_attribute_name(:created_at) %>: <%= l(@import_session.created_at) %></li>
+      </ul>
+    </div>
+
+
+    <div class="pure-u-2-3">
+      <table class="pure-table">
+        <thead>
+          <tr>
+            <th>Purchaser Name</th>
+            <th>Item Description</th>
+            <th>Item Price</th>
+            <th>Purchase Count</th>
+            <th>Merchant Address</th>
+            <th>Merchant Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @import_session.purchases.each do |purchase| %>
+          <tr class="purchase">
+            <td>
+              <%= purchase.purchaser.name %>
+            </td>
+            <td>
+              <%= purchase.item_description %>
+            </td>
+            <td>
+              <%= number_to_currency(purchase.item_price) %>
+            </td>
+            <td>
+              <%= purchase.quantity %>
+            </td>
+            <td>
+              <%= purchase.merchant_address %>
+            </td>
+            <td>
+              <%= purchase.merchant_name %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

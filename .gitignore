@@ -1,0 +1,4 @@
+coverage/*
+log/*
+public/system/*
+*.sqlite3

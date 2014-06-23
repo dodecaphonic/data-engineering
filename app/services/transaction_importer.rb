@@ -1,5 +1,7 @@
 require "csv"
 
+class TransactionImporterError < StandardError; end
+
 class TransactionImporter
   def initialize(data_file)
     @data_file = data_file
@@ -10,12 +12,20 @@ class TransactionImporter
 
   def import
     Purchase.transaction do
-      purchases = CSV.open(data_file, col_sep: "\t", headers: true).map { |row|
-        load_transaction(Transaction.new(row))
+      import_session = ImportSession.new
+      data           = CSV.open(data_file, col_sep: "\t", headers: true)
+
+      data.each.with_index { |row, line|
+        purchase = load_transaction(Transaction.new(row))
+        import_session.imported_purchases.build(line_number: line, purchase: purchase)
       }
 
-      ImportSummary.new(purchases)
+      import_session.data_file = open(data_file)
+      import_session.save!
+      import_session
     end
+  rescue
+    raise TransactionImporterError
   end
 
   def load_transaction(transaction)
